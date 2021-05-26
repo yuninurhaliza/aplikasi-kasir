@@ -1,0 +1,131 @@
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color:  rgb(65, 225, 198);
+    font-family: 'Redressed', cursive;
+}
+
+.text-center{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    border-radius: 40px;
+    box-shadow: 10px 10px 7px rgba(88, 88, 223, 0.5);
+    background-image: url(pictures/custom.png);
+    background-size: cover;
+    background-position: fixed;
+    box-sizing: border-box;
+    width: 80%;
+    height: 600px;
+    margin-top: 3%;
+    display: grid;
+    grid-template-areas: "kiri kanan";
+    grid-template-columns: 1fr 1fr;
+    padding: 5px;
+}
+
+.login{
+    display: grid;
+    place-content: center;
+    grid-area: kanan;
+    padding: 15px;
+    width: 80%;
+    height: 70%;
+    margin-top: 105px;
+    margin-left: 50px;
+    border-radius: 30px;
+    box-shadow: 7px 7px 7px rgba(88, 88, 223, 0.5);
+}
+
+p{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.email-id{
+    display: grid;
+    justify-content: left;
+    margin-left: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-email{
+    display: grid;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.password-id{
+    display: grid;
+    justify-content: left;
+    margin-left: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-password{
+    display: grid;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.forgot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    display: grid;
+    justify-content: center;
+    background-color: rgb(74, 90, 241);
+    border-radius: 25px;
+    width: 101%;
+    padding: 10px;
+    border: none;
+    background-color: rgb(65, 225, 198);
+    box-shadow: 5px 5px 7px rgba(88, 88, 223, 1);
+    text-transform: uppercase;
+    font-family: 'Acme', sans-serif;
+}
+
+button:hover{
+    background-color: rgba(88, 88, 223, 1);
+    color: white;
+    box-shadow: 5px 5px 7px  rgba(65, 225, 198, 0.8);
+}
+
+@media (max-width: 1000px) {
+    .container{
+        background-attachment: fixed;
+        margin-left: 100px;
+    }
+}
+
+@media (max-width: 850px) {
+    .container{
+        background-image: linear-gradient( rgb(65, 225, 198), rgb(65, 116, 225));
+        height: 600px;
+        margin: 3.5% auto;
+        display: grid;
+        grid-template-areas: " satu tengah dua";
+        grid-template-columns: 0.2fr 1fr 0.2fr;
+    }
+
+    .login{
+        background-color: white;
+        grid-area: tengah;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 7px 7px 7px rgba(65, 225, 198, 0.7);
+    }
+
+
+
+}
