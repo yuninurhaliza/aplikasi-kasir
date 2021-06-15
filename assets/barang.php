@@ -70,7 +70,7 @@
             while ($row = $query->fetch_assoc()) { ?>
 
             <tr class="text-center">
-                <td><?= $row['id']; ?></td>
+                <td><?= $row['id_barang']; ?></td>
                 <td><?= $row['nama_barang']; ?></td>
                 <td>Rp. <?= number_format($row['harga_barang']); ?></td>
                 <td><?= $row['stok']; ?></td>

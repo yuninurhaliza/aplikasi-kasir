@@ -69,16 +69,25 @@
         <div class="row">
             <div class="col-md-8">
               <form method="POST" action="assets/keranjang.php">
-                <div class="input-group">
-                    <select name="id" class="form-control">
-                      <option value="">Pilih Barang</option>
-                      <?php while ($row = mysqli_fetch_array($barang)) { ?>
-                        <option value="<?= $row['id']; ?>"><?= $row['nama_barang']; ?></option>
-                      <?php } ?>
-                    </select>
-                    <span class="input-group-btn ms-2">
-                      <button class="btn btn-primary" type="submit">Tambah</button>
-                    </span>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <select name="id" class="form-control">
+                        <option value="">Pilih Barang</option>
+                        <?php while ($row = mysqli_fetch_array($barang)) { ?>
+                          <option value="<?= $row['id']; ?>"><?= $row['nama_barang']; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <input type="number" name="jumlah" class="form-control" placeholder="jumlah">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary ms-2" type="submit">Tambah</button>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </form>
               <br>
@@ -88,6 +97,7 @@
                   <th>Harga</th>
                   <th>Jumlah</th>
                   <th>Sub Total</th>
+                  <!-- <th>Aksi</th> -->
                 </tr>
                 <?php foreach ($_SESSION['cart'] as $key => $value ) { ?>
                   <tr class="text-center">
@@ -95,27 +105,55 @@
                     <td><?= number_format($value['harga_barang']); ?></td>
                     <td><?= $value['jumlah']; ?></td>
                     <td><?= number_format($value['jumlah']*$value['harga_barang']); ?></td>
+                    <!-- <td><a href="keranjang_hapus.php?id=<?= $value['id']; ?>"><i class="fas fa-times-circle btn btn-danger"></i></a></td> -->
                   </tr>
                 <?php } ?>
               </table>
             </div>
             <div class="col-md-4">
               <h3>Total Belanja Rp.<?= number_format($sum); ?></h3>
+              <form action="assets/transaksi_act.php" method="post">
+                <input type="hidden" name="total" value="<?= $sum; ?>">
+                <div class="form-group">
+                    <label for="" class="mt-3">Masukkan Uang Pembayaran</label>
+                    <input type="text" id="bayar" name="bayar" class="form-control">
+                    <button type="submit" class="btn btn-primary mt-3">Bayar</button>
+                </div>
+              </form>
             </div>
         </div>
     </div>
 
 
+    <script type="text/javascript">
 
+      var bayar = document.getElementById('bayar');
 
+      bayar.addEventListener('keyup', function (e) {
+        bayar.value = formatRupiah(this.value, 'Rp. ');
+      });
 
+      function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split[','],
+        sisa = split[0].lenght % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
+        if (ribuan) {
+          separator = sisa ? '.' : '';
+          rupiah += separator + ribuan.join('.');
+        }
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+      }
 
+      function cleanRupiah(rupiah) {
+        var clean = rupiah.replace(/\D/g, '');
+        return clean;
+      }
 
-
-
-
-
+    </script>              
 
     <!-- Optional JavaScript; choose one of the two! -->
 
